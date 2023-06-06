@@ -4,18 +4,18 @@ App({
 
     this.globalData = {
       //记录使用者的openid
-      _openidA: '',
+      _openidA: 'oj3zr0Db66kKjTBI8bwY4WJQoi_8',
       _openidB: '',
 
       //记录使用者的名字
-      userA: '男孩',
-      userB: '女孩',
+      userA: '关樟樟',
+      userB: '小Mini',
 
-      date: '2022/05/22 00:00:00',
-      birthdayA: '2000/01/01 00:00:00',
-      birthdayB: '2000/01/01 00:00:00',       // 新历出生
-      birthdayA_next: '2023/01/01 00:00:00',  
-      birthdayB_next: '2023/01/01 00:00:00',  // 每年生日
+      date: '2021/07/03 00:00:00',
+      birthdayA: '1996/08/17 00:00:00',
+      birthdayB: '1994/06/19 00:00:00',       // 新历出生
+      birthdayA_next: '2023/08/17 00:00:00',  
+      birthdayB_next: '2023/06/19 00:00:00',  // 每年生日
 
       //用于存储待办记录的集合名称
       collectionMissionList: 'MissionList',
