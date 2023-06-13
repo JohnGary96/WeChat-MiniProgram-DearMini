@@ -136,6 +136,12 @@ Page({
                         duration: 1000
                     })
                 }
+            } else {
+                wx.showToast({
+                    title: '没有权限',
+                    icon: 'error',
+                    duration: 1000
+                })
             }
         })
     },
