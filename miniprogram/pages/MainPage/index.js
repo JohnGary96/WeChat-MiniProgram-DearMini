@@ -20,7 +20,8 @@ Page({
         sentences: getApp().globalData.sentences,
         lenOfSentences: 0,
     },
-    async onShow(){
+
+    async onShow() {
         this.setData({
             userA: getApp().globalData.userA,
             userB: getApp().globalData.userB,
@@ -35,6 +36,21 @@ Page({
         this.getCreditB()
         this.getDayA()
         this.getDayB()
+        wx.showLoading({
+          title: '加载中',
+          mask: true
+        })
+        wx.cloud.callFunction({name: 'getOpenId'}).then(openid => {
+          getApp().globalData.currentOpenId = openid.result
+          getApp().globalData.specialUser = openid.result == getApp().globalData._openidA
+                                         || openid.result == getApp().globalData._openidB
+          console.log('main page - currentOpenId', getApp().globalData.currentOpenId)
+          console.log('main page - specialUser', getApp().globalData.specialUser)
+        }).catch(error => {
+          console.error('获取OpenId异常', error)
+        }).finally(() => {
+          wx.hideLoading()
+        })
     },
     // 获取页面大小，当移动想你按钮，下次加载到该页面才能切换回原位置
     async getScreenSize(){
@@ -110,40 +126,49 @@ Page({
             duration: 2000
           });   
         // 返回当前用户的身份信息  结果用 openid.result 表示
-        wx.cloud.callFunction({name: 'getOpenId'}).then(async openid => {
-            // 对_openidA 数据进行更改
-            if (openid.result == getApp().globalData._openidA) {
-                if (this.data.day > 0 && this.data.day != this.data.dayA) {
-                    this.changeMissYou(openid.result)
-                }
-                else {  // 29 = 29
-                    wx.showToast({
-                        title: '已经完成啦',
-                        icon: 'error',
-                        duration: 1000
-                    })
-                }                
-            }
-            // 对_openidB 数据进行更改
-            else if (openid.result == getApp().globalData._openidB) {
-                if (this.data.day > 0 && this.data.day != this.data.dayB) {
-                    this.changeMissYou(openid.result)
-                }
-                else {  // 29 = 29
-                    wx.showToast({
-                        title: '已经完成啦',
-                        icon: 'error',
-                        duration: 1000
-                    })
-                }
-            } else {
-                wx.showToast({
-                    title: '没有权限',
-                    icon: 'error',
-                    duration: 1000
-                })
-            }
-        })
+        if (getApp().globalData.specialUser) {
+          this.changeMissYou(getApp().globalData.currentOpenId)
+        } else {
+          wx.showToast({
+            title: '没有权限',
+            icon: 'error',
+            duration: 1000
+          })
+        }
+        // wx.cloud.callFunction({name: 'getOpenId'}).then(async openid => {
+        //     // 对_openidA 数据进行更改
+        //     if (openid.result == getApp().globalData._openidA) {
+        //         // if (this.data.day > 0 && this.data.day != this.data.dayA) {
+        //             this.changeMissYou(openid.result)
+        //         // }
+        //         // else {  // 29 = 29
+        //         //     wx.showToast({
+        //         //         title: '已经完成啦',
+        //         //         icon: 'error',
+        //         //         duration: 1000
+        //         //     })
+        //         // }
+        //     }
+        //     // 对_openidB 数据进行更改
+        //     else if (openid.result == getApp().globalData._openidB) {
+        //         // if (this.data.day > 0 && this.data.day != this.data.dayB) {
+        //             this.changeMissYou(openid.result)
+        //         // }
+        //         // else {  // 29 = 29
+        //         //     wx.showToast({
+        //         //         title: '已经完成啦',
+        //         //         icon: 'error',
+        //         //         duration: 1000
+        //         //     })
+        //         // }
+        //     } else {
+        //         wx.showToast({
+        //             title: '没有权限',
+        //             icon: 'error',
+        //             duration: 1000
+        //         })
+        //     }
+        // })
     },
 
     // 点击进行纪念日跳转

@@ -13,12 +13,12 @@ Page({
 
     daysTotal: 0,   // 当前年总共多少天
 
-
     days: 0,hours: 0,minutes: 0,seconds: 0,
     daysA: 0,hoursA: 0,minutesA: 0,secondsA: 0,
     daysB: 0,hoursB: 0,minutesB: 0,secondsB: 0,
     daysA_: 0,daysB_: 0,
     date: getApp().globalData.date,
+    specialUser: getApp().globalData.specialUser
   },
 
   onLoad(options) {
@@ -30,7 +30,7 @@ Page({
     }
   },
   
-  getDate(dateStr){
+  getDate(dateStr) {
     const milliseconds = Date.parse(dateStr)
     const date = new Date()
     date.setTime(milliseconds)
@@ -52,13 +52,11 @@ Page({
   },
 
   async onShow() {
-    
     var obj = this.countTime(this.data.date)
     var objA = this.countTime(this.data.birthdayA)
     var objB = this.countTime(this.data.birthdayB)
     var objA_next = this.countTime(this.data.birthdayA_next)
     var objB_next = this.countTime(this.data.birthdayB_next)
- 
     
     this.setData({
       userA: getApp().globalData.userA,
@@ -80,8 +78,7 @@ Page({
       secondsB: objB.count_seconds,
 
       daysA_: -objA_next.count_days,
-      daysB_: -objB_next.count_days,
+      daysB_: -objB_next.count_days
     })
-  
   },
 })

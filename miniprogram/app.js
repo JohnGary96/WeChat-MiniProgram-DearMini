@@ -6,6 +6,7 @@ App({
       //记录使用者的openid
       _openidA: 'oj3zr0Db66kKjTBI8bwY4WJQoi_8',
       _openidB: 'oqsm_6gbCx3Bb9Jx-ITjUL4ZMQtA',
+      currentOpenId: '',
 
       //记录使用者的名字
       userA: '关樟樟',
@@ -38,7 +39,8 @@ App({
         '人们从诗人的字句里，选取自己心爱的意义，但诗句的最终意义是指向你。',
         '我大约真的没什么才华，只是有幸遇到了你，于是这颗庸常的心中才凭空生出好些浪漫。',   // 接近最大长度
         '在我的这颗小星球里面，你就是温柔跟璀璨，即使旁的宇宙再浪漫，我也终生不换。',
-    ],
+      ],
+      specialUser: false
     }
   },
 

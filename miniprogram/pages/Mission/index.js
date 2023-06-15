@@ -69,7 +69,28 @@ Page({
   },
   //转到添加任务
   async toAddPage() {
-    wx.navigateTo({url: '../MissionAdd/index'})
+    console.log('specialUser', getApp().globalData.specialUser)
+    if (getApp().globalData.specialUser) {
+      wx.navigateTo({url: '../MissionAdd/index'})
+    } else {
+      wx.showToast({
+        title: '没有权限',
+        icon: 'error',
+        duration: 1000
+      })
+    }
+    // wx.cloud.callFunction({name: 'getOpenId'}).then(openid => {
+    //   if (openid.result === getApp().globalData._openidA
+    //    || openid.result === getApp().globalData._openidB) {
+    //     wx.navigateTo({url: '../MissionAdd/index'})
+    //   } else {
+    //     wx.showToast({
+    //       title: '没有权限',
+    //       icon: 'error',
+    //       duration: 1000
+    //     })
+    //   }
+    // })
   },
 
   //设置搜索

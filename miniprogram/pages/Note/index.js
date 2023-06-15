@@ -61,7 +61,15 @@ Page({
   },
   //转到添加笔记
   async toAddPage() {
-    wx.navigateTo({url: '../NoteAdd/index'})
+    if (getApp().globalData.specialUser) {
+      wx.navigateTo({url: '../NoteAdd/index'})
+    } else {
+      wx.showToast({
+        title: '没有权限',
+        icon: 'error',
+        duration: 1000
+      })
+    }
   },
 
   //设置搜索

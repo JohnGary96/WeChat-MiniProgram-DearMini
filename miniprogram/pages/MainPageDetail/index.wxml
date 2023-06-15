@@ -15,11 +15,11 @@
     <view class="item-info_desc">
         距离{{userB}}生日<text class="nums_in"> {{util.cutStr(birthdayB_next, 10)}} </text>还有<text class="nums_in"> {{daysB_}} </text>天！</view>
     </view>
-    <view class="form-cell">
+    <view class="form-cell" hidden="{{!specialUser}}">
     <view class="item-info_desc">
         {{userA}}出生距今<text class="nums_in"> {{daysA}} </text>天<text class="nums_in"> {{hoursA}} </text>时<text class="nums_in"> {{minutesA}} </text>分<text class="nums_in"> {{secondsA}} </text>秒啦！</view>
     </view>
-    <view class="form-cell">
+    <view class="form-cell" hidden="{{!specialUser}}">
     <view class="item-info_desc">
         {{userB}}出生距今<text class="nums_in"> {{daysB}} </text>天<text class="nums_in"> {{hoursB}} </text>时<text class="nums_in"> {{minutesB}} </text>分<text class="nums_in"> {{secondsB}} </text>秒啦！</view>
     </view>

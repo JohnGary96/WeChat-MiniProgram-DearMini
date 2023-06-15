@@ -61,14 +61,16 @@ Page({
   },
 
   //获取当前账号积分数额
-  async getCurrentCredit(){
+  async getCurrentCredit() {
     await wx.cloud.callFunction({name: 'getOpenId'})
     .then(async openid => {
       await wx.cloud.callFunction({name: 'getElementByOpenId', data: {list: getApp().globalData.collectionUserList, _openid: openid.result}})
       .then(async res => {
-        this.setData({
-          credit: res.result.data[0].credit
-        }) 
+        if (!res.result.data) {
+          this.setData({
+            credit: res.result.data[0].credit
+          })
+        }
       })
     })
   },
@@ -101,7 +103,15 @@ Page({
   },
   //转到添加商品        
   async toAddPage() {   // 作为wxml的 bindtap
-    wx.navigateTo({url: '../MarketAdd/index'})
+    if (getApp().globalData.specialUser) {
+      wx.navigateTo({url: '../MarketAdd/index'})
+    } else {
+      wx.showToast({
+        title: '没有权限',
+        icon: 'error',
+        duration: 1000
+      })
+    }
   },
 
   //设置搜索
