@@ -2,7 +2,13 @@
 
   <swiper indicator-dots="true" indicator-color="white" indicator-active-color="#BFC8D7" autoplay="true" circular="true" interval="3000" duration="800" style="background: #F6F6F6; height: 220px; width: 100%;">
     <swiper-item>
-      <image src="./Images/HomeCover01.jpg" mode='widthFix' class="swiper-image" />
+      <image src="cloud://dear-mini-3gifkhnibf728c17.6465-dear-mini-3gifkhnibf728c17-1318590717/HomeCover01.jpg" mode='aspectFit' class="swiper-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="cloud://dear-mini-3gifkhnibf728c17.6465-dear-mini-3gifkhnibf728c17-1318590717/HomeCover02.jpg" mode='aspectFit' class="swiper-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="cloud://dear-mini-3gifkhnibf728c17.6465-dear-mini-3gifkhnibf728c17-1318590717/HomeCover03.jpg" mode='aspectFit' class="swiper-image" />
     </swiper-item>
   </swiper>
 
